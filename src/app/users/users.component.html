@@ -1,0 +1,99 @@
+<div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="10px" class="container" style="padding-bottom: 0">
+  <mat-form-field appearance="fill" fxFlex.gt-sm="100" fxFlex.lt-md="30">
+    <mat-label>Users</mat-label>
+    <input matInput name="filterUser" placeholder="Start search user here..." [formControl]="searchName" required
+           autocomplete="no" [matAutocomplete]="name">
+    <mat-autocomplete #name="matAutocomplete">
+      <mat-option *ngFor="let option of optionsName" [value]="option" (onSelectionChange)="chooseOption(option)">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="searchName.invalid && searchName.hasError('required')">You must enter a value for name input
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" fxFlex.gt-sm="100" fxFlex.lt-md="30">
+    <mat-label>Location</mat-label>
+    <input matInput name="filterLocation" placeholder="Start search location here..." [formControl]="searchLocation"
+           required autocomplete="no" [matAutocomplete]="location">
+    <mat-autocomplete #location="matAutocomplete">
+      <mat-option *ngFor="let option of optionsCities" [value]="option" (onSelectionChange)="chooseOption(option)">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="searchLocation.invalid && searchLocation.hasError('required')">You must enter a value for
+      location input
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" fxFlex.gt-sm="100" fxFlex.lt-md="30">
+    <mat-label>Programming language</mat-label>
+    <input matInput name="filterLanguage" placeholder="Start search language here..." [formControl]="searchLanguage"
+           required autocomplete="no" [matAutocomplete]="language">
+    <mat-autocomplete #language="matAutocomplete">
+      <mat-option *ngFor="let option of optionsLanguage" [value]="option" (onSelectionChange)="chooseOption(option)">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="searchLanguage.invalid && searchLanguage.hasError('required')">You must enter a value for
+      language input
+    </mat-error>
+  </mat-form-field>
+</div>
+<div fxLayout="column" style="padding: 0 16px 0 16px;">
+  <p class="mat-small" style="color: grey">The inputs for filtering are combined with each other</p>
+</div>
+<div fxLayout="column" class="container">
+  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- login Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    <!-- login Column -->
+    <ng-container matColumnDef="login">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Login</th>
+      <td mat-cell *matCellDef="let element">
+        <img src="{{element.avatar_url}}" alt="user avatar" class="avatar mr1">
+        <a href="{{element.html_url}}" title="user profile" role="link" class="mr1" target="_blank"
+           rel="nofollow">{{element.login}}</a>
+      </td>
+    </ng-container>
+    <!-- type Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type</th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+    <!-- Admin Column -->
+    <ng-container matColumnDef="site_admin">
+      <th mat-header-cell *matHeaderCellDef> Admin</th>
+      <td mat-cell *matCellDef="let element"> {{element.site_admin}} </td>
+    </ng-container>
+    <!-- Links Column -->
+    <ng-container matColumnDef="links">
+      <th mat-header-cell *matHeaderCellDef> Usefull links</th>
+      <td mat-cell *matCellDef="let element" class="text-right">
+        <a href="{{element.html_url}}" title="user profile" role="link" class="mr1" target="_blank" rel="nofollow">
+          <fa-icon [icon]="faUser"></fa-icon>
+        </a>
+        <a href="{{element.repos_url}}" title="user github repos" role="link" class="mr1" rel="nofollow">
+          <fa-icon [icon]="faGithub"></fa-icon>
+        </a>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <table class="mat-elevation-z8">
+    <tr *ngIf="!dataSource.data.length">
+      <td class="text-center p1" [attr.colspan]="displayedColumns.length">
+        Nothing to show..
+      </td>
+    </tr>
+  </table>
+  <mat-paginator [length]="length"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="pageEvent = changePage($event)"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
