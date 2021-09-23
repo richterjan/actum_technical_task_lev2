@@ -5,7 +5,7 @@ import {UsersComponent} from "./users/users.component";
 
 const routes: Routes = [
   {
-    path: '', component: UsersComponent, data: {title: 'Hlavní nástěnka'}
+    path: '', component: UsersComponent, data: {title: 'Dashboard'}
   },
   {path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule)},
 

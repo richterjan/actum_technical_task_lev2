@@ -15,6 +15,7 @@ import {faGithub} from '@fortawesome/free-brands-svg-icons';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+  title = 'actum-task > users';
   // Icons
   faUser = faUser;
   faGithub = faGithub;
