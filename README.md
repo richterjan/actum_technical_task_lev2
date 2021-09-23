@@ -30,7 +30,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 1. Get list of users trought GitHub services (REST-API)
 2. Use paginator to manage page index and page size in http / https request
 3. 3 individual parameters for filtering, which are combined with each other for the filter result
-4. Whispering input for each parameters input (autocomplete), with debouncing method
+4. Whispering input for each parameters input (autocomplete), with debouncing / throttling method
 
 ## Solving / Řešení
 ### Modular
@@ -60,5 +60,5 @@ Pro stránkování jsem využil komponentu v angular-material balíčku. Konkré
 ### Grid
 #### eng
 To display the results, I also used the table component from the angular-material package. I use this table as a component for visual display of data, also for other functions such as sorting by columns, etc ..
-####cz
+#### cz
 Pro zobrazení výsledků jsem využil komponenty table také z balíčku angular-material. Tuto tabulku používám jako komponentu pro vizuální zobrazení dat, také pro další funkce jako je třeba řazení podle sloupců atd..
