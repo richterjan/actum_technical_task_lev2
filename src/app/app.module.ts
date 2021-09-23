@@ -16,6 +16,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {TitleService} from "./title.service";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     MatAutocompleteModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [TitleService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

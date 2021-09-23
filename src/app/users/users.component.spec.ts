@@ -1,7 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {UsersComponent} from './users.component';
-import {HttpClientModule} from "@angular/common/http";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -12,6 +11,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -21,7 +21,7 @@ describe('UsersComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         MatGridListModule,
         MatFormFieldModule,
         MatInputModule,

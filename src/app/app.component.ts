@@ -7,8 +7,6 @@ import {TitleService} from "./title.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'actum-task';
-
   constructor(
     private titleService: TitleService,
   ) {
