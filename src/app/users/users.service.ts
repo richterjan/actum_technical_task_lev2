@@ -80,9 +80,6 @@ export class UsersService {
     searchString += this.locationTerm ? '+location:' + this.locationTerm : '';
     // language
     searchString += this.languageTerm ? '+language:' + this.languageTerm : '';
-    console.log(searchString);
-    console.log(this.perPage);
-    console.log(this.page);
     if (searchString.length > 0) {
       this.callUserRequest(searchString).subscribe((users: UserResponse) => {
         this.users.next(users);

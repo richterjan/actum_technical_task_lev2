@@ -50,7 +50,6 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.userService.users.subscribe((users: UserResponse | null) => {
       this.optionsName = [];
-      console.log(users);
       if (users && users.items) {
         this.length = users.total_count;
         this.dataSource = new MatTableDataSource(users.items);
@@ -89,7 +88,6 @@ export class UsersComponent implements OnInit {
   }
 
   changePage(event: PageEvent) {
-    console.log(event);
     this.userService.perPage = event.pageSize;
     this.userService.page = event.pageIndex + 1;
     this.userService.getUsers();
