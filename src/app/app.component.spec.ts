@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import {Ng7BootstrapBreadcrumbModule} from "ng7-bootstrap-breadcrumb";
-import {HttpClientModule} from "@angular/common/http";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
