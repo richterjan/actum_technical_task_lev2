@@ -39,7 +39,7 @@ export class UsersComponent implements OnInit {
   // Table
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  displayedColumns: string[] = ['id', 'login', 'type', 'site_admin', 'links'];
+  displayedColumns: string[] = ['id', 'login', 'type', 'site_admin', 'score'];
   dataSource = new MatTableDataSource<any>([]);
 
   constructor(
@@ -48,13 +48,12 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.users.subscribe((users: UserResponse) => {
+    this.userService.users.subscribe((users: UserResponse | null) => {
       this.optionsName = [];
       console.log(users);
-      this.length = users.total_count;
       if (users && users.items) {
+        this.length = users.total_count;
         this.dataSource = new MatTableDataSource(users.items);
-        // this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         users.items.forEach((user: User) => {
           this.optionsName.push(user.login)
@@ -63,15 +62,19 @@ export class UsersComponent implements OnInit {
     });
     this.userService.locations.subscribe((cities: any[]) => {
       this.optionsCities = [];
-      cities.forEach((city: any) => {
-        this.optionsCities.push(city.name)
-      });
+      if (cities) {
+        cities.forEach((city: any) => {
+          this.optionsCities.push(city.name)
+        });
+      }
     });
     this.userService.languages.subscribe((languages: string[]) => {
       this.optionsLanguage = [];
-      languages.forEach((language: string) => {
-        this.optionsLanguage.push(language)
-      });
+      if (languages) {
+        languages.forEach((language: string) => {
+          this.optionsLanguage.push(language)
+        });
+      }
     });
     this.searchName.valueChanges.subscribe((value: string) => {
       console.log('input change');
@@ -83,10 +86,6 @@ export class UsersComponent implements OnInit {
     this.searchLanguage.valueChanges.subscribe((value: string) => {
       this.onInputTextChanged(value, 'language');
     });
-  }
-
-  chooseOption(value: string) {
-    console.log(value);
   }
 
   changePage(event: PageEvent) {

@@ -12,6 +12,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -22,6 +23,8 @@ describe('UsersComponent', () => {
       imports: [
         BrowserAnimationsModule,
         HttpClientTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
         MatGridListModule,
         MatFormFieldModule,
         MatInputModule,
@@ -33,8 +36,7 @@ describe('UsersComponent', () => {
         FontAwesomeModule
       ],
       declarations: [UsersComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -45,5 +47,28 @@ describe('UsersComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  // Serach fields validator
+  it('user field validity', () => {
+    const user = component.searchName;
+    expect(user.valid).toBeFalsy();
+
+    user.setValue('');
+    expect(user.hasError('required')).toBeTruthy();
+  });
+  it('location field validity', () => {
+    const location = component.searchLocation;
+    expect(location.valid).toBeFalsy();
+
+    location.setValue('');
+    expect(location.hasError('required')).toBeTruthy();
+  });
+  it('language field validity', () => {
+    const language = component.searchLanguage;
+    expect(language.valid).toBeFalsy();
+
+    language.setValue('');
+    expect(language.hasError('required')).toBeTruthy();
   });
 });
