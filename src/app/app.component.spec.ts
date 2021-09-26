@@ -1,12 +1,31 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import {Ng7BootstrapBreadcrumbModule} from "ng7-bootstrap-breadcrumb";
+import {HttpClientModule} from "@angular/common/http";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {OverlayModule} from "@angular/cdk/overlay";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatSelectModule} from "@angular/material/select";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        Ng7BootstrapBreadcrumbModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        OverlayModule,
+        MatTooltipModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        FontAwesomeModule
       ],
       declarations: [
         AppComponent
@@ -18,18 +37,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'actum-task'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('actum-task');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('actum-task app is running!');
   });
 });
